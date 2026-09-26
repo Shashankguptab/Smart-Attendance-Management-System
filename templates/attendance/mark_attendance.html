@@ -1,0 +1,145 @@
+{% extends "attendance/base.html" %}
+
+{% block content %}
+
+<h1>Mark Attendance</h1>
+
+<p class="page-description">
+    Select a subject and section, then mark
+    attendance for each student.
+</p>
+
+
+<form method="POST">
+
+    {% csrf_token %}
+
+    <div class="form-row">
+
+        <div class="form-group">
+
+            <label>Subject</label>
+
+            <select name="subject" required>
+
+                <option value="">
+                    Select Subject
+                </option>
+
+                {% for subject in subjects %}
+
+                <option value="{{ subject.id }}">
+                    {{ subject.code }} - {{ subject.name }}
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Section</label>
+
+            <select name="section" required>
+
+                <option value="A">
+                    Section A
+                </option>
+
+                <option value="B">
+                    Section B
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+
+    <div class="table-box">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Roll Number</th>
+                    <th>Student</th>
+                    <th>Status</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for student in students %}
+
+                <tr>
+
+                    <td>
+                        {{ student.roll_number }}
+                    </td>
+
+                    <td>
+                        {{ student.user.username }}
+                    </td>
+
+                    <td>
+
+                        <label class="radio-option">
+
+                            <input type="radio" name="student_{{ student.id }}" value="P" checked>
+
+                            Present
+
+                        </label>
+
+
+                        <label class="radio-option">
+
+                            <input type="radio" name="student_{{ student.id }}" value="A">
+
+                            Absent
+
+                        </label>
+
+                    </td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+
+                    <td colspan="3">
+                        No students available.
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <div class="form-actions">
+
+        <button type="submit" class="btn">
+
+            Save Attendance
+
+        </button>
+
+    </div>
+
+</form>
+
+{% endblock %}

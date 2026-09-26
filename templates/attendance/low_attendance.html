@@ -1,0 +1,80 @@
+{% extends "attendance/base.html" %}
+
+{% block content %}
+
+<h1>Low Attendance Report</h1>
+
+<p class="page-description">
+    Students with subject-wise attendance below 75%.
+</p>
+
+
+<div class="table-box">
+
+    <table>
+
+        <thead>
+
+            <tr>
+                <th>Roll Number</th>
+                <th>Student</th>
+                <th>Subject</th>
+                <th>Total Classes</th>
+                <th>Present</th>
+                <th>Attendance</th>
+            </tr>
+
+        </thead>
+
+
+        <tbody>
+
+            {% for item in report %}
+
+            <tr>
+
+                <td>
+                    {{ item.student.roll_number }}
+                </td>
+
+                <td>
+                    {{ item.student.user.username }}
+                </td>
+
+                <td>
+                    {{ item.subject.name }}
+                </td>
+
+                <td>
+                    {{ item.total }}
+                </td>
+
+                <td>
+                    {{ item.present }}
+                </td>
+
+                <td class="low">
+                    {{ item.percentage }}%
+                </td>
+
+            </tr>
+
+            {% empty %}
+
+            <tr>
+
+                <td colspan="6">
+                    No students have attendance below 75%.
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}

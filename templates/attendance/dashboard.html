@@ -1,0 +1,71 @@
+{% extends "attendance/base.html" %}
+
+{% block content %}
+
+<h1>Attendance Dashboard</h1>
+
+<p class="page-description">
+    Welcome, {{ user.username }}.
+</p>
+
+
+<div class="dashboard-grid">
+
+    <div class="stat-card">
+
+        <h3>Total Students</h3>
+
+        <div class="stat-number">
+            {{ student_count }}
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <h3>Total Subjects</h3>
+
+        <div class="stat-number">
+            {{ subject_count }}
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <h3>Attendance Sessions</h3>
+
+        <div class="stat-number">
+            {{ session_count }}
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="action-box">
+
+    <h2>Quick Actions</h2>
+
+    <div class="action-buttons">
+
+        <a href="{% url 'mark_attendance' %}" class="btn">
+            Mark Attendance
+        </a>
+
+        <a href="{% url 'attendance_history' %}" class="btn">
+            View History
+        </a>
+
+        <a href="{% url 'low_attendance' %}" class="btn btn-warning">
+            Low Attendance Report
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}
