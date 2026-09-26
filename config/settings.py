@@ -25,7 +25,11 @@ SECRET_KEY = 'django-insecure-q*87^n8t$=xj(3#7r*40qqfhzk5k*k^k4mmd==mwvqv#fa(mf_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS =  [
+    "127.0.0.1",
+    "localhost",
+    "smart-attendance-management-system-6k4s.onrender.com",
+]
 
 
 # Application definition
